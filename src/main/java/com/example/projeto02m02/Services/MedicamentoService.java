@@ -19,6 +19,7 @@ public class MedicamentoService {
         repository.save(medicamento);
     }
     public List<MedicamentoEntity> buscarMedicamentos(){
+
         return repository.findAll();
     }
     public MedicamentoEntity findById(Long id){

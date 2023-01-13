@@ -1,9 +1,10 @@
 package com.example.projeto02m02.Controllers;
-
-
+import com.example.projeto02m02.Dtos.MedicamentoDto;
 import com.example.projeto02m02.Entities.MedicamentoEntity;
-import com.example.projeto02m02.Entities.UsuarioEntity;
 import com.example.projeto02m02.Services.MedicamentoService;
+import org.apache.catalina.connector.Response;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,13 +19,26 @@ public class MedicamentoController {
     }
 
     @PostMapping("/cadastro")
-    public void save(@RequestBody MedicamentoEntity medicamento){
+    public ResponseEntity save(@RequestBody MedicamentoEntity medicamento){
+
         service.save(medicamento);
+        MedicamentoDto medicamentoDto = new MedicamentoDto();
+        medicamentoDto.setDados(medicamento);
+
+        return new ResponseEntity<>(new MedicamentoDto(Response.SC_CREATED, "Medicamento criado com sucesso", medicamentoDto.getDados()), HttpStatus.CREATED);
+
     }
 
     @PutMapping("/cadastro")
-    public void update(@RequestBody MedicamentoEntity medicamento){
+    public ResponseEntity update(@RequestBody MedicamentoEntity medicamento){
+
         service.save(medicamento);
+
+        MedicamentoDto medicamentoDto = new MedicamentoDto();
+        medicamentoDto.setDados(medicamento);
+
+        return new ResponseEntity<>(new MedicamentoDto(Response.SC_OK, "Medicamento atualizado com sucesso", medicamentoDto.getDados()), HttpStatus.OK);
+
     }
     @GetMapping
     public List<MedicamentoEntity> buscarTodosMedicamentos(){

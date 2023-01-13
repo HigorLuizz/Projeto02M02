@@ -3,10 +3,13 @@ package com.example.projeto02m02.Services;
 import com.example.projeto02m02.EnderecoViaCep;
 import com.example.projeto02m02.Entities.EnderecoEntity;
 import com.example.projeto02m02.Entities.FarmaciaEntity;
+import com.example.projeto02m02.Entities.MedicamentoEntity;
 import com.example.projeto02m02.Feign.FeignClient;
 import com.example.projeto02m02.Repositories.EnderecoRepository;
 import com.example.projeto02m02.Repositories.FarmaciaRepository;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class FarmaciaService {
@@ -46,5 +49,20 @@ public class FarmaciaService {
                         .idEndereco(enderecoEntity)
                 .build());
 
+    }
+    public List<FarmaciaEntity> buscarFarmacias(){
+        return farmaciaRepository.findAll();
+    }
+    public FarmaciaEntity findById(Long id){
+        if(farmaciaRepository.findById(id).isPresent()){
+            return farmaciaRepository.findById(id).get();
+        }else{
+            return null;
+        }
+
+    }
+
+    public void deleteById(Long id){
+        farmaciaRepository.deleteById(id);
     }
 }
