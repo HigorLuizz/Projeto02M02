@@ -1,41 +1,41 @@
 # Projeto02M02
-O projeto consiste em uma API, que salva e pega dados de um banco de dados.
+O projeto consiste em uma API, que salva e pega dados de um banco de dados.<br /><br />
 
-Para salvar dados,entre no postman, no método post e siga o exemplo abaixo:
+Para salvar dados,entre no postman, no método post e siga o exemplo abaixo:<br /><br />
 
-Salvar um novo usuário, no path http://localhost:8080/usuario/cadastro:
-    {
-      "email":"email@exemplo.com",
-      "senha":"senhaexemplo123"
-    }
-    Para atualizar um usuário, no método put no postman, basta colocar um novo campo nos dados acima, com: "id": númeroId, por exemplo:
-    { 
+Salvar um novo usuário, no path http://localhost:8080/usuario/cadastro:<br />
+    {<br />
+      "email":"email@exemplo.com",<br />
+      "senha":"senhaexemplo123"<br />
+    }<br />
+    Para atualizar um usuário, no método put no postman, basta colocar um novo campo nos dados acima, com: "id": númeroId, por exemplo:<br />
+    { <br />
       "id":1,
-      "email":"email@exemplo.com",
-      "senha":"senhaexemplo123"
-    }
-Salvar um novo medicamento, no path http://localhost:8080/medicamentos/cadastro:
-    {   
-        "nome": "Buscopan",
-        "nomelab:":"Clamed",
-        "dosagem" : "100mg",
-        "descricao":"O remedio é usado para dor de cabeça",
-        "precounitario":"R$ 100,00",
-        "tipomedicamento":"Comum"
-    }
-    Para atualizar um medicamento, no método put no postman, basta colocar um novo campo nos dados acima, com: "id": númeroId, por exemplo:
-    {    
+      "email":"email@exemplo.com",<br />
+      "senha":"senhaexemplo123"<br />
+    }<br />
+Salvar um novo medicamento, no path http://localhost:8080/medicamentos/cadastro:<br />
+    {   <br />
+        "nome": "Buscopan",<br />
+        "nomelab:":"Clamed",<br />
+        "dosagem" : "100mg",<br />
+        "descricao":"O remedio é usado para dor de cabeça",<br />
+        "precounitario":"R$ 100,00",<br />
+        "tipomedicamento":"Comum"<br />
+    }<br />
+    Para atualizar um medicamento, no método put no postman, basta colocar um novo campo nos dados acima, com: "id": númeroId, por exemplo:<br />
+    {<br />    
         "id":1,
-        "nome": "Buscopan",
-        "nomelab:":"Clamed",
-        "dosagem" : "100mg",
-        "descricao":"O remedio é usado para dor de cabeça",
-        "precounitario":"R$ 100,00",
-        "tipomedicamento":"Comum"
-    }
+        "nome": "Buscopan",<br />
+        "nomelab:":"Clamed",<br />
+        "dosagem" : "100mg",<br />
+        "descricao":"O remedio é usado para dor de cabeça",<br />
+        "precounitario":"R$ 100,00",<br />
+        "tipomedicamento":"Comum"<br />
+    }<br />
 
-Salvar uma farmácia(junto com um novo endereço), no path http://localhost:8080/farmacias/cadastro:
-    {   
+Salvar uma farmácia(junto com um novo endereço), no path http://localhost:8080/farmacias/cadastro:<br />
+    { <br />
         "razaoSocial":"teste",
         "cnpj":"12345678912345",
         "nome":"teste nome",
