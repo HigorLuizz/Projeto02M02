@@ -1,5 +1,6 @@
 package com.example.projeto02m02.Services;
 
+import com.example.projeto02m02.Dtos.MedicamentoByIdDto;
 import com.example.projeto02m02.Dtos.MedicamentoDto;
 import com.example.projeto02m02.Dtos.MedicamentosDto;
 import com.example.projeto02m02.Entities.MedicamentoEntity;
@@ -10,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class MedicamentoService {
@@ -33,9 +35,13 @@ public class MedicamentoService {
             return new ResponseEntity(new MedicamentosDto(Response.SC_FOUND,"Medicamentos escontrados!",medicamentos),HttpStatus.FOUND);
         }
     }
-    public MedicamentoEntity findById(Long id){
+    public ResponseEntity findById(Long id){
         if(repository.findById(id).isPresent()){
-            return repository.findById(id).get();
+            Optional<MedicamentoEntity> medicamento = repository.findById(id);
+
+            MedicamentoByIdDto medicamentoDto = new MedicamentoByIdDto();
+
+            return new ResponseEntity(new MedicamentoByIdDto(Response.SC_FOUND,"Medicamento encontrado!",medicamento), HttpStatus.FOUND);
         }else{
             throw new NullPointerException();
         }

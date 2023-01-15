@@ -1,6 +1,6 @@
 package com.example.projeto02m02.Dtos;
 
-import com.example.projeto02m02.Entities.MedicamentoEntity;
+import com.example.projeto02m02.Entities.UsuarioEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,7 +13,7 @@ import java.util.Optional;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class MedicamentoByIdDto {
+public class UsuarioByIdDto {
     private int statusCode;
 
     private String mensagem;

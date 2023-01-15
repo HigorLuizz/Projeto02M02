@@ -47,7 +47,7 @@ public class MedicamentoController {
         return service.buscarMedicamentos();
     }
     @GetMapping("/{id}")
-    public MedicamentoEntity findById(@PathVariable("id") Long id){
+    public ResponseEntity findById(@PathVariable("id") Long id){
         return service.findById(id);
     }
 

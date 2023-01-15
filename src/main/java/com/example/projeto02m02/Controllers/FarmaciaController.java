@@ -44,7 +44,7 @@ public class FarmaciaController {
     }
 
     @GetMapping("/{id}")
-    public FarmaciaEntity findById(@PathVariable("id") Long id){
+    public ResponseEntity findById(@PathVariable("id") Long id){
         return service.findById(id);
     }
 

@@ -41,12 +41,12 @@ public class UsuarioController {
     }
 
     @GetMapping("/login")
-    public List<UsuarioEntity> buscarTodosUsuarios(){
+    public ResponseEntity buscarTodosUsuarios(){
         return service.buscarUsuarios();
     }
 
     @GetMapping("/login/{id}")
-    public UsuarioEntity findById(@PathVariable("id") Long id){
+    public ResponseEntity findById(@PathVariable("id") Long id){
         return service.findById(id);
     }
 }

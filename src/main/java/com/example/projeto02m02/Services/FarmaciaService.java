@@ -1,6 +1,8 @@
 package com.example.projeto02m02.Services;
 
+import com.example.projeto02m02.Dtos.FarmaciaByIdDto;
 import com.example.projeto02m02.Dtos.FarmaciasDto;
+import com.example.projeto02m02.Dtos.MedicamentoByIdDto;
 import com.example.projeto02m02.Dtos.MedicamentosDto;
 import com.example.projeto02m02.EnderecoViaCep;
 import com.example.projeto02m02.Entities.EnderecoEntity;
@@ -15,6 +17,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class FarmaciaService {
@@ -62,16 +65,19 @@ public class FarmaciaService {
         }else{
             List<FarmaciaEntity> farmacias = farmaciaRepository.findAll();
 
-            FarmaciasDto farmaciasDto = new FarmaciasDto();
 
-            return new ResponseEntity(new FarmaciasDto(Response.SC_FOUND,"Medicamentos escontrados!",farmacias), HttpStatus.FOUND);
+            return new ResponseEntity(new FarmaciasDto(Response.SC_FOUND,"Farmácias escontradas!",farmacias), HttpStatus.FOUND);
 
         }
 
     }
-    public FarmaciaEntity findById(Long id){
+    public ResponseEntity findById(Long id){
         if(farmaciaRepository.findById(id).isPresent()){
-            return farmaciaRepository.findById(id).get();
+            Optional<FarmaciaEntity> farmacia = farmaciaRepository.findById(id);
+
+            FarmaciaByIdDto farmaciaDto = new FarmaciaByIdDto();
+
+            return new ResponseEntity(new FarmaciaByIdDto(Response.SC_FOUND,"Farmácia encontrada!",farmacia), HttpStatus.FOUND);
         }else{
             throw new NullPointerException();
         }
