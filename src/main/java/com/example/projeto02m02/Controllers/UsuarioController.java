@@ -1,12 +1,15 @@
 package com.example.projeto02m02.Controllers;
 
 import com.example.projeto02m02.Dtos.UsuarioDto;
+import com.example.projeto02m02.Entities.FarmaciaEntity;
 import com.example.projeto02m02.Entities.UsuarioEntity;
 import com.example.projeto02m02.Services.UsuarioService;
 import org.apache.catalina.connector.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/usuario")
@@ -35,5 +38,15 @@ public class UsuarioController {
 
         return new ResponseEntity<>(new UsuarioDto(Response.SC_OK, "Usuario atualizado com sucesso", usuarioDto.getDados()), HttpStatus.OK);
 
+    }
+
+    @GetMapping("/login")
+    public List<UsuarioEntity> buscarTodosUsuarios(){
+        return service.buscarUsuarios();
+    }
+
+    @GetMapping("/login/{id}")
+    public UsuarioEntity findById(@PathVariable("id") Long id){
+        return service.findById(id);
     }
 }

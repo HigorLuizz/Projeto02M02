@@ -1,4 +1,5 @@
 package com.example.projeto02m02.Controllers;
+import com.example.projeto02m02.Dtos.DeleteDto;
 import com.example.projeto02m02.Dtos.MedicamentoDto;
 import com.example.projeto02m02.Entities.MedicamentoEntity;
 import com.example.projeto02m02.Services.MedicamentoService;
@@ -41,7 +42,8 @@ public class MedicamentoController {
 
     }
     @GetMapping
-    public List<MedicamentoEntity> buscarTodosMedicamentos(){
+    public ResponseEntity buscarTodosMedicamentos(){
+
         return service.buscarMedicamentos();
     }
     @GetMapping("/{id}")
@@ -50,7 +52,11 @@ public class MedicamentoController {
     }
 
     @DeleteMapping("/cadastro/{id}")
-    public void deleById(@PathVariable("id") Long id){
+    public ResponseEntity deleById(@PathVariable("id") Long id){
+
         service.deleteById(id);
+        DeleteDto delete = new DeleteDto(Response.SC_OK, "Medicamento deletado com seucesso!");
+        return new ResponseEntity<>(delete, HttpStatus.OK);
+
     }
 }
