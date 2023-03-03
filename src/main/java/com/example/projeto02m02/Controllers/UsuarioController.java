@@ -12,14 +12,14 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/usuario")
+@RequestMapping("/usuarios")
 public class UsuarioController {
     private UsuarioService service;
     public UsuarioController(UsuarioService service){
         this.service = service;
     }
 
-    @PostMapping("/cadastro")
+    @PostMapping()
     public ResponseEntity save(@RequestBody UsuarioEntity usuario){
 
         service.save(usuario);
@@ -29,7 +29,7 @@ public class UsuarioController {
         return new ResponseEntity<>(new UsuarioDto(Response.SC_CREATED, "Usuario cadastrado com sucesso", usuarioDto.getDados()), HttpStatus.CREATED);
     }
 
-    @PutMapping("/cadastro")
+    @PutMapping()
     public ResponseEntity update(@RequestBody UsuarioEntity usuario){
 
         service.save(usuario);
@@ -40,12 +40,12 @@ public class UsuarioController {
 
     }
 
-    @GetMapping("/login")
+    @GetMapping()
     public ResponseEntity buscarTodosUsuarios(){
         return service.buscarUsuarios();
     }
 
-    @GetMapping("/login/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity findById(@PathVariable("id") Long id){
         return service.findById(id);
     }
