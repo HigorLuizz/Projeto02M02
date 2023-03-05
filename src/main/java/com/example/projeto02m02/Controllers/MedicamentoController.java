@@ -19,7 +19,7 @@ public class MedicamentoController {
         this.service = service;
     }
 
-    @PostMapping("/cadastro")
+    @PostMapping()
     public ResponseEntity save(@RequestBody MedicamentoEntity medicamento){
 
         service.save(medicamento);
@@ -30,7 +30,7 @@ public class MedicamentoController {
 
     }
 
-    @PutMapping("/cadastro")
+    @PutMapping()
     public ResponseEntity update(@RequestBody MedicamentoEntity medicamento){
 
         service.save(medicamento);
@@ -51,7 +51,7 @@ public class MedicamentoController {
         return service.findById(id);
     }
 
-    @DeleteMapping("/cadastro/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity deleById(@PathVariable("id") Long id){
 
         service.deleteById(id);

@@ -20,7 +20,7 @@ public class FarmaciaController {
     public FarmaciaController (FarmaciaService service){
         this.service = service;
     }
-    @PostMapping("/cadastro")
+    @PostMapping()
     public ResponseEntity salvaFarmaciaEendereco(@RequestBody FarmaciaEntity farmacia){
         service.saveFarmacia(farmacia);
         FarmaciaDto farmaciaDto = new FarmaciaDto();
@@ -29,7 +29,7 @@ public class FarmaciaController {
         return new ResponseEntity<>(new FarmaciaDto(Response.SC_CREATED, "Farmácia  criada com sucesso", farmaciaDto.getDados()), HttpStatus.CREATED);
     }
 
-    @PutMapping("/cadastro")
+    @PutMapping()
     public ResponseEntity atualizaFarmaciaEendereco(@RequestBody FarmaciaEntity farmacia){
         service.saveFarmacia(farmacia);
         FarmaciaDto farmaciaDto = new FarmaciaDto();
@@ -48,7 +48,7 @@ public class FarmaciaController {
         return service.findById(id);
     }
 
-    @DeleteMapping("/cadastro/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity deleById(@PathVariable("id") Long id){
 
         service.deleteById(id);
