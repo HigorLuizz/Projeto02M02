@@ -15,16 +15,16 @@ public class ApplicationExcepitionHandler extends ResponseEntityExceptionHandler
     @ExceptionHandler(NullPointerException.class)
     public ResponseEntity handleExceptionNoFindId(Exception e){
 
-        DefaultError erro = new DefaultError(HttpStatus.BAD_REQUEST.value(), "Não existe esse dado!","Provavelmente você requisitou um dado que não existe no sistema. Tente outra requisição");
+        DefaultError erro = new DefaultError(HttpStatus.FOUND.value(), "Não existe esse dado!","Provavelmente você requisitou um dado que não existe no sistema. Tente outra requisição");
 
-        return new ResponseEntity(erro, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity(erro, HttpStatus.FOUND);
     }
     @ExceptionHandler(Exception.class)
     public ResponseEntity handleException(Exception e){
 
-        DefaultError defaultError = new DefaultError(HttpStatus.BAD_REQUEST.value(),"Um erro ocorreu","Um erro ocorreu no sistema, revise os dados requeridos e as ações tomadas e tente novamente!");
+        DefaultError defaultError = new DefaultError(HttpStatus.OK.value(),"Um erro ocorreu","Um erro ocorreu no sistema, revise os dados requeridos e as ações tomadas e tente novamente!");
 
-        return new ResponseEntity("error", HttpStatus.BAD_REQUEST);
+        return new ResponseEntity("error", HttpStatus.OK);
     }
 
 }

@@ -33,7 +33,7 @@ public class JwtTokenAuthenticationService {
                 .setSubject(username)
                 .setExpiration(new Date(System.currentTimeMillis()+EXPIRATION_TIME))
                 .signWith(SignatureAlgorithm.HS512, SECRET).compact();
-        String token = TOKEN_PREFIX+ "" + JWT;
+        String token = TOKEN_PREFIX+ " " + JWT;
 
         response.getWriter().write("{\"Authorization\": \""+token+"\"}");
     }

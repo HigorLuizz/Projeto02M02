@@ -23,7 +23,8 @@ import java.net.URI;
 @SpringBootTest
 @AutoConfigureMockMvc
 @AutoConfigureTestEntityManager
-public class TestsRoleGerente {
+
+public class TestsRoleColaboradorInAllEndpoints {
     private URI path;
     private MockHttpServletRequest request;
     private ResultMatcher expectedResult;
@@ -37,7 +38,7 @@ public class TestsRoleGerente {
     public void setUp() throws Exception{
 
 
-        String json = "{\"login\": \"anapaula\", \"senha\": \"654321\"}";
+        String json = "{\"login\": \"mayaralorena\", \"senha\": \"654321\"}";
 
 
         path = new URI("/login");
@@ -60,11 +61,12 @@ public class TestsRoleGerente {
 
 
     }
-    //TESTES COM O ENDPONT USUARIO COM A ROLE GERENTE//
+
+    //TESTES COM O ENDPONT USUARIO COM A ROLE COLABORADOR//
     //--------------------------------------------------------//
 
     @Test
-    public void testGetAllUsuarioscomRoleGerente() throws Exception{
+    public void testGetAllUsuarioscomRoleColaborador() throws Exception{
 
         path = new URI("/usuarios");
 
@@ -79,7 +81,7 @@ public class TestsRoleGerente {
 
     }
     @Test
-    public void testPostUsuarioComRoleGerente() throws Exception{
+    public void testPostUsuarioComRoleColaborador() throws Exception{
 
         String jsonCadastro = "{\"nome\": \"Usuario Teste\", \"login\": \"usuariotest\", \"senha\": \"123456\"}";
 
@@ -96,7 +98,7 @@ public class TestsRoleGerente {
 
     }
     @Test
-    public void testPUTUsuariocomRoleGerente() throws Exception {
+    public void testPUTUsuariocomRoleColaborador() throws Exception {
 
         String jsonAtualiza = "{\"id\": \"1\", \"nome\": \"Usuario Atualizado\", \"login\": \"usuarioatualizado\", \"senha\": \"usuarioatualizado\"}";
 
@@ -108,12 +110,12 @@ public class TestsRoleGerente {
                 .header("Content-Type", "application/json")
                 .header("Authorization", jwtToken);
 
-        expectedResult = MockMvcResultMatchers.status().isOk();
+        expectedResult = MockMvcResultMatchers.status().isForbidden();
 
         mock.perform(request).andExpect(expectedResult);
     }
     @Test
-    public void testDeleteUsuariocomRoleGerente() throws Exception {
+    public void testDeleteUsuariocomRoleColaborador() throws Exception {
 
         path = new URI("/usuarios");
 
@@ -128,11 +130,11 @@ public class TestsRoleGerente {
         mock.perform(request).andExpect(expectedResult);
     }
 
-    //TESTES COM O ENDPONT MEDICAMENTOS COM A ROLE GERENTE//
+    //TESTES COM O ENDPONT MEDICAMENTOS COM A ROLE COLABORADOR//
     //--------------------------------------------------------//
 
     @Test
-    public void testGetAllMedicamentoscomRoleGerente() throws Exception{
+    public void testGetAllMedicamentoscomRoleColaborador() throws Exception{
 
         path = new URI("/medicamentos");
 
@@ -147,7 +149,7 @@ public class TestsRoleGerente {
 
     }
     @Test
-    public void testPostMedicamentocomRoleGerente() throws Exception{
+    public void testPostMedicamentocomRoleColaborador() throws Exception{
 
         String jsonCadastro = "{\"nome\": \"Buscopan\", " +
                 "\"nomelab\": \"Clamed\", " +
@@ -169,7 +171,7 @@ public class TestsRoleGerente {
 
     }
     @Test
-    public void testPUTMedicamentoscomRoleGerente() throws Exception {
+    public void testPUTMedicamentoscomRoleColaborador() throws Exception {
 
         String jsonAtualiza = "{\"id\": \"1\", " +
                 "\"nome\": \"Anador\", " +
@@ -186,12 +188,12 @@ public class TestsRoleGerente {
                 .header("Content-Type", "application/json")
                 .header("Authorization", jwtToken);
 
-        expectedResult = MockMvcResultMatchers.status().isOk();
+        expectedResult = MockMvcResultMatchers.status().isForbidden();
 
         mock.perform(request).andExpect(expectedResult);
     }
     @Test
-    public void testDeleteMedicamentoscomRoleGerente() throws Exception {
+    public void testDeleteMedicamentoscomRoleColaborador() throws Exception {
 
         path = new URI("/medicamentos/");
 
@@ -206,12 +208,12 @@ public class TestsRoleGerente {
         mock.perform(request).andExpect(expectedResult);
     }
 
-    //TESTES COM O ENDPONT FARMACIAS COM A ROLE GERENTE//
+    //TESTES COM O ENDPONT FARMACIAS COM A ROLE COLABORADOR//
     //--------------------------------------------------------//
 
 
     @Test
-    public void testGetAllFarmaciascomRoleGerente() throws Exception{
+    public void testGetAllFarmaciascomRoleColaborador() throws Exception{
 
         path = new URI("/farmacias");
 
@@ -226,7 +228,7 @@ public class TestsRoleGerente {
 
     }
     @Test
-    public void testPostFarmaciacomRoleGerente() throws Exception{
+    public void testPostFarmaciacomRoleColaborador() throws Exception{
 
         String jsonCadastro = "{\"razaoSocial\": \"teste\", " +
                 "\"cnpj\": \"12345678912345\", " +
@@ -253,7 +255,7 @@ public class TestsRoleGerente {
 
     }
     @Test
-    public void testPUTFarmaciacomRoleGerente() throws Exception {
+    public void testPUTFarmaciacomRoleColaborador() throws Exception {
 
         String jsonAtualiza = "{\"id\": \"1\", " +
                 "\"razaoSocial\": \"teste\", " +
@@ -275,12 +277,12 @@ public class TestsRoleGerente {
                 .header("Content-Type", "application/json")
                 .header("Authorization", jwtToken);
 
-        expectedResult = MockMvcResultMatchers.status().isOk();
+        expectedResult = MockMvcResultMatchers.status().isForbidden();
 
         mock.perform(request).andExpect(expectedResult);
     }
     @Test
-    public void testDeleteFarmaciacomRoleGerente() throws Exception {
+    public void testDeleteFarmaciacomRoleColaborador() throws Exception {
 
         path = new URI("/farmacias/");
 
@@ -294,5 +296,4 @@ public class TestsRoleGerente {
 
         mock.perform(request).andExpect(expectedResult);
     }
-
 }

@@ -24,6 +24,8 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
+
+
                 .antMatchers(HttpMethod.GET, "/usuarios")
                 .permitAll()
                 .antMatchers(HttpMethod.GET, "/medicamentos")
@@ -32,16 +34,15 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .antMatchers(HttpMethod.POST,"/medicamentos/**").permitAll()
                 .antMatchers(HttpMethod.POST,"/farmacias/**").permitAll()
+                .antMatchers(HttpMethod.POST,"/usuarios/**").permitAll()
 
                 .antMatchers(HttpMethod.PUT,"/medicamentos").hasAnyRole("ADMINISTRADOR","GERENTE")
                 .antMatchers(HttpMethod.PUT,"/farmacias").hasAnyRole("ADMINISTRADOR","GERENTE")
                 .antMatchers(HttpMethod.PUT,"/usuarios").hasAnyRole("ADMINISTRADOR","GERENTE")
 //
-                .antMatchers(HttpMethod.DELETE,"/usuarios").hasRole("ADMINISTRADOR")
-                .antMatchers(HttpMethod.DELETE,"/usuarios").hasRole("ADMINISTRADOR")
-                .antMatchers(HttpMethod.DELETE,"/usuarios").hasRole("ADMINISTRADOR")
-
-                .antMatchers("/medicamentos").hasRole("ADMINISTRADOR")
+                .antMatchers(HttpMethod.DELETE,"/usuarios/**").hasRole("ADMINISTRADOR")
+                .antMatchers(HttpMethod.DELETE,"/medicamentos/**").hasRole("ADMINISTRADOR")
+                .antMatchers(HttpMethod.DELETE,"/farmacias/**").hasRole("ADMINISTRADOR")
 
                 .anyRequest()
                 .authenticated()
